@@ -10,11 +10,13 @@ function convertToObject(sourceString) {
 
   const lines = sourceString.split(';').filter((rule) => rule.trim().length);
 
-  for (const line of lines) {
-    const [key, value] = line.split(':');
+  lines.forEach((line) => {
+    const [property, value] = line.split(':');
 
-    styles[key.trim()] = value.trim();
-  }
+    if (property && value) {
+      styles[property.trim()] = value.trim();
+    }
+  });
 
   return styles;
 }
