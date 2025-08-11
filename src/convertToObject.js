@@ -8,13 +8,18 @@
 function convertToObject(sourceString) {
   const styles = {};
 
-  const lines = sourceString.split(';').filter((rule) => rule.trim().length);
+  const lines = sourceString
+    .split(';')
+    .filter((rule) => rule.trim().length);
 
   lines.forEach((line) => {
-    const [property, value] = line.split(':');
+    const colonIndex = line.indexOf(':');
 
-    if (property && value) {
-      styles[property.trim()] = value.trim();
+    if (colonIndex !== -1) {
+      const property = line.slice(0, colonIndex).trim();
+      const value = line.slice(colonIndex + 1).trim();
+
+      styles[property] = value;
     }
   });
 
