@@ -26,4 +26,5 @@ function convertToObject(sourceString) {
   return styles;
 }
 
+
 module.exports = convertToObject;
